@@ -1,0 +1,17 @@
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  datasource:
+    url: "jdbc:postgresql://localhost:5434/postgres"
+    username: "postgres"
+    password: "postgres"
+  sql:
+    init:
+      mode: always
+      platform: postgres
+  flyway:
+    url: ${spring.datasource.url}
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
