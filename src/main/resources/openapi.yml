@@ -271,10 +271,6 @@ components:
     FurnitureDto:
       type: object
       properties:
-        id:
-          type: integer
-          description:
-            Уникальный идентификатор товара в БД
         article:
           type: string
           description:

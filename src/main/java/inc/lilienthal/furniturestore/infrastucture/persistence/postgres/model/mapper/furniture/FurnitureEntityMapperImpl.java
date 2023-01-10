@@ -12,7 +12,6 @@ public class FurnitureEntityMapperImpl implements FurnitureEntityMapper {
   @Override
   public Furniture toFurnitureDomain(final FurnitureEntity furnitureEntity) {
     return Furniture.of(
-      furnitureEntity.getId(),
       furnitureEntity.getArticle(),
       furnitureEntity.getName(),
       furnitureEntity.getManufacturer(),
@@ -27,7 +26,6 @@ public class FurnitureEntityMapperImpl implements FurnitureEntityMapper {
   public FurnitureEntity toFurnitureEntity(final Furniture furniture) {
 
     FurnitureEntity furnitureEntity = new FurnitureEntity();
-    furnitureEntity.setId(furniture.getId());
     furnitureEntity.setArticle(furniture.getArticle());
     furnitureEntity.setName(furniture.getName());
     furnitureEntity.setCategory(furniture.getCategory());

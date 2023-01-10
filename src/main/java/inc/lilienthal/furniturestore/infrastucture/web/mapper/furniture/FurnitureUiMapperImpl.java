@@ -12,7 +12,6 @@ public class FurnitureUiMapperImpl implements FurnitureUiMapper {
   @Override
   public Furniture toFurnitureDomain(final FurnitureDto furnitureDto) {
     return Furniture.of(
-      furnitureDto.getId(),
       furnitureDto.getArticle(),
       furnitureDto.getName(),
       furnitureDto.getManufacturer(),
@@ -35,7 +34,6 @@ public class FurnitureUiMapperImpl implements FurnitureUiMapper {
 
     final FurnitureDto furnitureDto = new FurnitureDto();
 
-    furnitureDto.setId((int)furniture.getId());
     furnitureDto.setName(furniture.getName());
     furnitureDto.setArticle(furniture.getArticle());
     furnitureDto.setCategory(furniture.getCategory());
