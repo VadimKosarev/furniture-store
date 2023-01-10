@@ -20,7 +20,7 @@ public class FurnitureUseCaseConfiguration {
 
   @Bean
   public FurnitureService furnitureService(FurnitureEntityMapper furnitureEntityMapper,
-                                           @Qualifier("furnitureRepositoryJpa") FurnitureRepositoryJpa furnitureRepositoryJpa) {
+                                          FurnitureRepositoryJpa furnitureRepositoryJpa) {
     return new FurnitureServiceImpl(furnitureEntityMapper, furnitureRepositoryJpa);
   }
 
