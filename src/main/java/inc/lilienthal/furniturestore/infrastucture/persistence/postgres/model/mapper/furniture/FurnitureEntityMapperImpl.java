@@ -28,13 +28,13 @@ public class FurnitureEntityMapperImpl implements FurnitureEntityMapper {
 
     FurnitureEntity furnitureEntity = new FurnitureEntity();
     furnitureEntity.setId(furniture.getId());
-    furnitureEntity.setArticle(furnitureEntity.getArticle());
-    furnitureEntity.setName(furnitureEntity.getName());
-    furnitureEntity.setCategory(furnitureEntity.getCategory());
-    furnitureEntity.setModel(furnitureEntity.getModel());
-    furnitureEntity.setDescription(furnitureEntity.getDescription());
-    furnitureEntity.setAmount(furnitureEntity.getAmount());
-    furnitureEntity.setManufacturer(furnitureEntity.getManufacturer());
+    furnitureEntity.setArticle(furniture.getArticle());
+    furnitureEntity.setName(furniture.getName());
+    furnitureEntity.setCategory(furniture.getCategory());
+    furnitureEntity.setModel(furniture.getModel());
+    furnitureEntity.setDescription(furniture.getDescription());
+    furnitureEntity.setAmount(furniture.getAmount());
+    furnitureEntity.setManufacturer(furniture.getManufacturer());
 
     return furnitureEntity;
   }

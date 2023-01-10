@@ -1,6 +1,7 @@
 package inc.lilienthal.furniturestore.infrastucture.web.controller;
 
 import inc.lilienthal.furniturestore.application.usecase.scenario.furniture.FurnitureUseCase;
+import inc.lilienthal.furniturestore.domain.Furniture;
 import inc.lilienthal.furniturestore.infrastucture.web.mapper.FurnitureUiMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +21,8 @@ public class CatalogController implements CatalogApi {
   @Override
   public ResponseEntity<Void> createFurniture(final FurnitureDto furnitureDto) {
     log.info("createFurniture start");
-    furnitureUseCase.save(furnitureUiMapper.toFurnitureDomain(furnitureDto));
+    Furniture furniture = furnitureUiMapper.toFurnitureDomain(furnitureDto);
+    furnitureUseCase.save(furniture);
     return null;
   }
 
