@@ -18,7 +18,6 @@ public class FurnitureServiceImpl implements FurnitureService {
   @Override
   public void save(final Furniture furniture) {
     furnitureRepositoryJpa.save(furnitureEntityMapper.toFurnitureEntity(furniture));
-    log.debug("Объект furniture с артикулом = {} сохранен в БД", furniture.getArticle());
   }
 
   @Override

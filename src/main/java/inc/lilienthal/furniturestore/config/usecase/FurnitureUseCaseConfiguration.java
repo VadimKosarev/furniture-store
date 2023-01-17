@@ -6,7 +6,6 @@ import inc.lilienthal.furniturestore.infrastucture.persistence.postgres.impl.Fur
 import inc.lilienthal.furniturestore.infrastucture.persistence.postgres.model.mapper.FurnitureEntityMapper;
 import inc.lilienthal.furniturestore.infrastucture.persistence.postgres.model.mapper.furniture.FurnitureEntityMapperImpl;
 import inc.lilienthal.furniturestore.infrastucture.persistence.postgres.repository.FurnitureRepositoryJpa;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -20,7 +19,7 @@ public class FurnitureUseCaseConfiguration {
 
   @Bean
   public FurnitureService furnitureService(FurnitureEntityMapper furnitureEntityMapper,
-                                          FurnitureRepositoryJpa furnitureRepositoryJpa) {
+                                           FurnitureRepositoryJpa furnitureRepositoryJpa) {
     return new FurnitureServiceImpl(furnitureEntityMapper, furnitureRepositoryJpa);
   }
 

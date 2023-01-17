@@ -57,7 +57,7 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 
-  /catalog/furniture/{article}:
+  /catalog/furniture/findByArticle:
     get:
       tags:
         - furniture
@@ -65,7 +65,7 @@ paths:
       operationId: getFurnitureByArticle
       parameters:
         - name: article
-          in: path
+          in: query
           description: Артикул товара
           required: true
           schema:
@@ -86,6 +86,7 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 
+  /catalog/furniture/{article}/remove:
     delete:
       tags:
         - furniture
@@ -108,7 +109,7 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 
-  /catalog/furniture/filter/{category}:
+  /catalog/furniture/findByCategory:
     get:
       tags:
         - furniture
@@ -116,7 +117,7 @@ paths:
       operationId: getFurnitureListByCategory
       parameters:
         - name: category
-          in: path
+          in: query
           description: Категория товара товара
           required: true
           schema:
@@ -137,7 +138,7 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 
-  /catalog/furniture/filter/{model}:
+  /catalog/furniture/findByModel:
     get:
       tags:
         - furniture
@@ -145,7 +146,7 @@ paths:
       operationId: getFurnitureListByModel
       parameters:
         - name: model
-          in: path
+          in: query
           description: Модель товара товара
           required: true
           schema:
@@ -237,6 +238,7 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 
+  /order/{tracking_number}/remove:
     delete:
       tags:
         - order
