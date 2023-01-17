@@ -16,40 +16,73 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class CatalogController implements CatalogApi {
-  final FurnitureUseCase furnitureUseCase;
-  final FurnitureUiMapper furnitureUiMapper;
+
+  private final FurnitureUseCase furnitureUseCase;
+  private final FurnitureUiMapper furnitureUiMapper;
 
   @Override
   public ResponseEntity<Void> createFurniture(final FurnitureDto furnitureDto) {
+
     Furniture furniture = furnitureUiMapper.toFurnitureDomain(furnitureDto);
     furnitureUseCase.save(furniture);
     log.debug("Furniture has article {}, added in catalog", furniture.getArticle());
+
     return null;
   }
 
   @Override
   public ResponseEntity<List<FurnitureDto>> getAllFurniture() {
+
     List<FurnitureDto> furnitureDtoList = furnitureUiMapper.toFurnitureDtoList(
       furnitureUseCase.findAll()
     );
+
     return ResponseEntity
       .status(HttpStatus.OK)
       .body(furnitureDtoList);
   }
 
-  @Override public ResponseEntity<List<FurnitureDto>> getFurnitureByArticle(final String article) {
-    return CatalogApi.super.getFurnitureByArticle(article);
+  @Override
+  public ResponseEntity<FurnitureDto> getFurnitureByArticle(final String article) {
+
+    FurnitureDto furnitureDto = furnitureUiMapper.toFurnitureDto(
+      furnitureUseCase.findByArticle(article)
+    );
+
+    return ResponseEntity
+      .status(HttpStatus.OK)
+      .body(furnitureDto);
   }
 
-  @Override public ResponseEntity<List<FurnitureDto>> getFurnitureListByCategory(final String category) {
-    return CatalogApi.super.getFurnitureListByCategory(category);
+  @Override
+  public ResponseEntity<List<FurnitureDto>> getFurnitureListByCategory(final String category) {
+
+    List<FurnitureDto> furnitureDtoList = furnitureUiMapper.toFurnitureDtoList(
+      furnitureUseCase.findByCategory(category)
+    );
+
+    return ResponseEntity
+      .status(HttpStatus.OK)
+      .body(furnitureDtoList);
   }
 
-  @Override public ResponseEntity<List<FurnitureDto>> getFurnitureListByModel(final String model) {
-    return CatalogApi.super.getFurnitureListByModel(model);
+  @Override
+  public ResponseEntity<List<FurnitureDto>> getFurnitureListByModel(final String model) {
+
+    List<FurnitureDto> furnitureDtoList = furnitureUiMapper.toFurnitureDtoList(
+      furnitureUseCase.findByModel(model)
+    );
+
+    return ResponseEntity
+      .status(HttpStatus.OK)
+      .body(furnitureDtoList);
   }
 
-  @Override public ResponseEntity<Void> removeFurnitureByArticle(final String article) {
-    return CatalogApi.super.removeFurnitureByArticle(article);
+  @Override
+  public ResponseEntity<Void> removeFurnitureByArticle(final String article) {
+
+    furnitureUseCase.deleteByArticle(article);
+
+    return null;
   }
 }

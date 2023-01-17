@@ -6,10 +6,12 @@ import inc.lilienthal.furniturestore.infrastucture.persistence.postgres.model.ma
 import inc.lilienthal.furniturestore.infrastucture.persistence.postgres.repository.FurnitureRepositoryJpa;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
+@Transactional
 public class FurnitureServiceImpl implements FurnitureService {
 
   private final FurnitureEntityMapper furnitureEntityMapper;
