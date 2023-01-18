@@ -195,7 +195,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/FullOrder'
+              $ref: '#/components/schemas/SaveOrderRequest'
         required: true
       responses:
         '200':
@@ -306,6 +306,31 @@ components:
           "model": "Луна Люкс",
           "description": "Тут должно быть описание товара",
           "amount": 4000000
+        }
+
+    SaveOrderRequest:
+      type: object
+      properties:
+        nameClient:
+          type: string
+          description:
+            Имя клинта
+        emailClient:
+          type: string
+          description:
+            Email клиента для обратной связи
+        furnitureList:
+          type: array
+          items:
+            type: string
+      example:
+        {
+          "nameClient": "Максим",
+          "emailClient": "maxstream1943@gmail.com",
+          "furnitureList": [
+            "09900493",
+            "03455525"
+          ]
         }
 
     FullOrder:
