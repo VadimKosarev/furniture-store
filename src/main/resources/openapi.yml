@@ -195,7 +195,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/OrderRequest'
+              $ref: '#/components/schemas/FullOrder'
         required: true
       responses:
         '200':
@@ -226,9 +226,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/OrderResponse'
+                $ref: '#/components/schemas/FullOrder'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
@@ -310,7 +308,7 @@ components:
           "amount": 4000000
         }
 
-    OrderRequest:
+    FullOrder:
       type: object
       properties:
         nameClient:

@@ -1,4 +1,4 @@
-package inc.lilienthal.furniturestore.infrastucture.persistence.postgres.impl;
+package inc.lilienthal.furniturestore.infrastucture.persistence.postgres.impl.furniture;
 
 import inc.lilienthal.furniturestore.application.usecase.access.furniture.FurnitureService;
 import inc.lilienthal.furniturestore.domain.Furniture;

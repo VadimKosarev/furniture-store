@@ -13,10 +13,10 @@ CREATE TABLE furniture
 CREATE TABLE orders
 (
     id               bigserial PRIMARY KEY,
-    tracking_number  varchar(25),
-    date_of_creation timestamp,
-    name_client      varchar(20),
-    email_client     varchar(20),
+    tracking_number  varchar(50),
+    date_of_creation varchar(50),
+    name_client      varchar(22),
+    email_client     varchar(23),
     total_amount     bigint
 );
 

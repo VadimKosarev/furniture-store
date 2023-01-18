@@ -1,4 +1,4 @@
-package inc.lilienthal.furniturestore.infrastucture.web.mapper;
+package inc.lilienthal.furniturestore.infrastucture.web.mapper.furniture;
 
 import inc.lilienthal.furniturestore.domain.Furniture;
 import org.openapitools.model.FurnitureDto;

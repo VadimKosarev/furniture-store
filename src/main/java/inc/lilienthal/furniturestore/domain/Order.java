@@ -1,11 +1,12 @@
 package inc.lilienthal.furniturestore.domain;
 
 import lombok.Getter;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 public class Order {
-  private long id;
   private String trackingNumber;
   private String dateOfCreation;
   private String clientName;
@@ -13,9 +14,8 @@ public class Order {
   private long totalAmount;
   private List<Furniture> furnitures;
 
-  private Order(final long id, final String trackingNumber, final String dateOfCreation, final String clientName,
+  private Order(final String trackingNumber, final String dateOfCreation, final String clientName,
                 final String clientEmail, final long totalAmount, final List<Furniture> furnitures) {
-    this.id = id;
     this.trackingNumber = trackingNumber;
     this.dateOfCreation = dateOfCreation;
     this.clientName = clientName;
@@ -24,11 +24,23 @@ public class Order {
     this.furnitures = furnitures;
   }
 
-  public static Order of(final long id, final String trackingNumber, final String dateOfCreation,
-                         final String clientName,
-                         final String clientEmail, final long totalAmount, final List<Furniture> furnitures) {
+  public static Order of(final String clientName, final String clientEmail,
+                         final List<Furniture> furnitures) {
 
-    return new Order(id, trackingNumber, dateOfCreation, clientName, clientEmail, totalAmount, furnitures);
+    return new Order(
+      generateUUID().toString(), LocalDateTime.now().toString(), clientName, clientEmail, calculateTotalSum(furnitures),
+      furnitures
+    );
   }
+
+  private static long calculateTotalSum(List<Furniture> furnitures) {
+    return furnitures.stream()
+      .mapToLong(Furniture::getAmount).sum();
+  }
+
+  private static UUID generateUUID() {
+    return UUID.randomUUID();
+  }
+
 
 }

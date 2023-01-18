@@ -2,7 +2,7 @@ package inc.lilienthal.furniturestore.infrastucture.web.controller;
 
 import inc.lilienthal.furniturestore.application.usecase.scenario.furniture.FurnitureUseCase;
 import inc.lilienthal.furniturestore.domain.Furniture;
-import inc.lilienthal.furniturestore.infrastucture.web.mapper.FurnitureUiMapper;
+import inc.lilienthal.furniturestore.infrastucture.web.mapper.furniture.FurnitureUiMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.openapitools.api.CatalogApi;

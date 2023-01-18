@@ -4,9 +4,11 @@ import inc.lilienthal.furniturestore.domain.Order;
 import inc.lilienthal.furniturestore.infrastucture.persistence.postgres.model.OrderEntity;
 import inc.lilienthal.furniturestore.infrastucture.persistence.postgres.model.mapper.FurnitureEntityMapper;
 import inc.lilienthal.furniturestore.infrastucture.persistence.postgres.model.mapper.OrderEntityMapper;
+import lombok.RequiredArgsConstructor;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@RequiredArgsConstructor
 public class OrderEntityMapperImpl implements OrderEntityMapper {
 
   FurnitureEntityMapper furnitureEntityMapper;
@@ -14,12 +16,8 @@ public class OrderEntityMapperImpl implements OrderEntityMapper {
   @Override
   public Order toOrderDomain(final OrderEntity orderEntity) {
     return Order.of(
-      orderEntity.getId(),
-      orderEntity.getTrackingNumber(),
-      orderEntity.getDateOfCreation(),
       orderEntity.getClientName(),
       orderEntity.getClientEmail(),
-      orderEntity.getTotalAmount(),
       furnitureEntityMapper.toFurnitureDomainList(orderEntity.getFurnitureEntityList())
     );
   }
@@ -28,7 +26,6 @@ public class OrderEntityMapperImpl implements OrderEntityMapper {
   public OrderEntity toOrderEntity(final Order order) {
 
     OrderEntity orderEntity = new OrderEntity();
-    orderEntity.setId(order.getId());
     orderEntity.setTrackingNumber(order.getTrackingNumber());
     orderEntity.setDateOfCreation(order.getDateOfCreation());
     orderEntity.setClientName(order.getClientName());

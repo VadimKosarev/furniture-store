@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 public class FurnitureEntityMapperImpl implements FurnitureEntityMapper {
+
   @Override
   public Furniture toFurnitureDomain(final FurnitureEntity furnitureEntity) {
     return Furniture.of(

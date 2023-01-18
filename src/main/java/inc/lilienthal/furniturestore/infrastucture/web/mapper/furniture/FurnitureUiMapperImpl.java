@@ -1,7 +1,6 @@
 package inc.lilienthal.furniturestore.infrastucture.web.mapper.furniture;
 
 import inc.lilienthal.furniturestore.domain.Furniture;
-import inc.lilienthal.furniturestore.infrastucture.web.mapper.FurnitureUiMapper;
 import org.openapitools.model.FurnitureDto;
 import org.springframework.stereotype.Service;
 import java.util.List;
