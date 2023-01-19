@@ -1,0 +1,260 @@
+{
+	"info": {
+		"_postman_id": "a60f1d03-7155-43bf-b59b-db2a6e3a1025",
+		"name": "Магазин мебели",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22557006"
+	},
+	"item": [
+		{
+			"name": "Furniture",
+			"item": [
+				{
+					"name": "addFurniture",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"article\": \"02900493\",\n  \"name\": \"Диван угловой Луна Люкс №4\",\n  \"category\": \"Мягкая мебель\",\n  \"manufacturer\": \"ЛЮКС-МЕБЕЛЬ\",\n  \"model\": \"Луна Люкс\",\n  \"description\": \"Тут должно быть описание товара\",\n  \"amount\": 4000000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/catalog/furniture",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"catalog",
+								"furniture"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteFurniture",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/catalog/furniture/09900493/remove",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"catalog",
+								"furniture",
+								"09900493",
+								"remove"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCatalog",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/catalog/furniture",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"catalog",
+								"furniture"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getFurnitureByArticle",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/catalog/furniture/findByArticle?article=09900493",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"catalog",
+								"furniture",
+								"findByArticle"
+							],
+							"query": [
+								{
+									"key": "article",
+									"value": "09900493"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getFurnitureByCategory",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/catalog/furniture/findByCategory?category=Мягкая мебель",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"catalog",
+								"furniture",
+								"findByCategory"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "Мягкая мебель"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getFurnitureByModel",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/catalog/furniture/findByModel?model=Луна Люкс",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"catalog",
+								"furniture",
+								"findByModel"
+							],
+							"query": [
+								{
+									"key": "model",
+									"value": "Луна Люкс"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "createOrder",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nameClient\": \"Дмитрий\",\n  \"emailClient\": \"dimasazz@gmail.com\",\n  \"furnitureList\": [\n    \"09900493\"\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllOrders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOrderByTrackingNumber",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/order/3132e51d-f1cf-442b-811d-cc0d57280332",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"order",
+								"3132e51d-f1cf-442b-811d-cc0d57280332"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteOrderByTrackingNumber",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/order/852e34c7-07ee-49e2-bd47-42cf64cfe60f/remove",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"order",
+								"852e34c7-07ee-49e2-bd47-42cf64cfe60f",
+								"remove"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

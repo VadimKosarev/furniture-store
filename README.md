@@ -32,3 +32,9 @@ mvn clean compile
 ```
 docker compose up
 ```
+
+### Postman Collections
+
+```
+src/main/resources/Магазин мебели.postman_collection.json
+```
