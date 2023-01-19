@@ -3,6 +3,7 @@ package inc.lilienthal.furniturestore.infrastucture.web.mapper.order;
 import inc.lilienthal.furniturestore.domain.Order;
 import org.openapitools.model.FullOrder;
 import org.openapitools.model.OrderResponse;
+import org.openapitools.model.SaveOrderRequest;
 import java.util.List;
 
 public interface OrderUiMapper {
@@ -18,4 +19,6 @@ public interface OrderUiMapper {
   Order toOrderDomain(FullOrder fullOrder);
 
   List<Order> toOrderDomainList(List<FullOrder> fullOrderList);
+
+  Order toOrderDomain(SaveOrderRequest saveOrderRequest);
 }

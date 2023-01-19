@@ -22,9 +22,9 @@ public class OrderServiceImpl implements OrderService {
   private final FurnitureEntityMapper furnitureEntityMapper;
 
   @Override
+  @Transactional
   public void save(final Order order) {
     orderRepositoryJpa.save(orderEntityMapper.toOrderEntity(order));
-    furnitureRepositoryJpa.save(furnitureEntityMapper.toFurnitureEntityList(order.getFurnitures()));
   }
 
   @Override
@@ -35,7 +35,11 @@ public class OrderServiceImpl implements OrderService {
   @Override
   public Order findOrderByTrackingNumber(final String trackingNumber) {
     return orderEntityMapper.toOrderDomain(
-      orderRepositoryJpa.findByTrackingNumber(trackingNumber));
+      orderRepositoryJpa.findByTrackingNumber(trackingNumber)
+        .orElseThrow(
+          () -> new RuntimeException("Заказа с таким трек-номером нет!")
+        )
+    );
   }
 
   @Override

@@ -11,7 +11,6 @@ import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
-@Transactional
 public class FurnitureServiceImpl implements FurnitureService {
 
   private final FurnitureEntityMapper furnitureEntityMapper;
@@ -33,6 +32,7 @@ public class FurnitureServiceImpl implements FurnitureService {
   }
 
   @Override
+  @Transactional
   public void deleteByArticle(final String article) {
     furnitureRepositoryJpa.deleteByArticle(article);
   }

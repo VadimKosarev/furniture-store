@@ -1,14 +1,13 @@
 package inc.lilienthal.furniturestore.infrastucture.web.controller;
 
-import inc.lilienthal.furniturestore.application.usecase.scenario.order.OrderUseCase;
-import inc.lilienthal.furniturestore.domain.Order;
+import inc.lilienthal.furniturestore.application.usecase.access.order.OrderService;
 import inc.lilienthal.furniturestore.infrastucture.web.mapper.order.OrderUiMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.openapitools.api.OrderApi;
 import org.openapitools.model.FullOrder;
 import org.openapitools.model.OrderResponse;
-import org.springframework.http.HttpStatus;
+import org.openapitools.model.SaveOrderRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
@@ -18,46 +17,29 @@ import java.util.List;
 @Slf4j
 public class OrderController implements OrderApi {
 
-  private final OrderUseCase orderUseCase;
+  private final OrderService orderService;
+
   private final OrderUiMapper orderUiMapper;
 
   @Override
-  public ResponseEntity<Void> createOrder(final FullOrder fullOrder) {
-
-    Order order = orderUiMapper.toOrderDomain(fullOrder);
-    orderUseCase.save(order);
+  public ResponseEntity<Void> createOrder(final SaveOrderRequest saveOrderRequest) {
+    orderService.save(orderUiMapper.toOrderDomain(saveOrderRequest));
     return null;
   }
 
   @Override
   public ResponseEntity<List<OrderResponse>> getAllOrders() {
-
-    List<OrderResponse> orderResponseList = orderUiMapper.toOrderResponseList(
-      orderUseCase.findAll()
-    );
-
-    return ResponseEntity
-      .status(HttpStatus.OK)
-      .body(orderResponseList);
+    return ResponseEntity.ok(orderUiMapper.toOrderResponseList(orderService.findAll()));
   }
 
   @Override
   public ResponseEntity<FullOrder> getOrderByTrackingNumber(final String trackingNumber) {
-
-    final FullOrder fullOrder = orderUiMapper.toFullOrder(
-      orderUseCase.findOrderByTrackingNumber(trackingNumber)
-    );
-
-    return ResponseEntity
-      .status(HttpStatus.OK)
-      .body(fullOrder);
+    return ResponseEntity.ok(orderUiMapper.toFullOrder(orderService.findOrderByTrackingNumber(trackingNumber)));
   }
 
   @Override
   public ResponseEntity<Void> removeOrderByTrackingNumber(final String trackingNumber) {
-
-    orderUseCase.deleteOrderByTrackingNumber(trackingNumber);
-
+    orderService.deleteOrderByTrackingNumber(trackingNumber);
     return null;
   }
 }

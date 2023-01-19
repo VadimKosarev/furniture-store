@@ -33,6 +33,11 @@ public class Order {
     );
   }
 
+  public static Order copyByParams(final String trackingNumber, final String dateOfCreation, final String clientName,
+                                   final String clientEmail, final long totalAmount, final List<Furniture> furnitures) {
+    return new Order(trackingNumber, dateOfCreation, clientName, clientEmail, totalAmount, furnitures);
+  }
+
   private static long calculateTotalSum(List<Furniture> furnitures) {
     return furnitures.stream()
       .mapToLong(Furniture::getAmount).sum();
@@ -41,6 +46,4 @@ public class Order {
   private static UUID generateUUID() {
     return UUID.randomUUID();
   }
-
-
 }

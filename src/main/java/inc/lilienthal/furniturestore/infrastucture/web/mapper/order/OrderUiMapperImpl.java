@@ -1,12 +1,17 @@
 package inc.lilienthal.furniturestore.infrastucture.web.mapper.order;
 
+import inc.lilienthal.furniturestore.domain.Furniture;
 import inc.lilienthal.furniturestore.domain.Order;
+import inc.lilienthal.furniturestore.infrastucture.persistence.postgres.model.FurnitureEntity;
+import inc.lilienthal.furniturestore.infrastucture.persistence.postgres.model.mapper.FurnitureEntityMapper;
+import inc.lilienthal.furniturestore.infrastucture.persistence.postgres.repository.FurnitureRepositoryJpa;
 import inc.lilienthal.furniturestore.infrastucture.web.mapper.furniture.FurnitureUiMapper;
 import lombok.RequiredArgsConstructor;
 import org.openapitools.model.FullOrder;
 import org.openapitools.model.OrderResponse;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.openapitools.model.SaveOrderRequest;
 import org.springframework.stereotype.Service;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,8 +19,11 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class OrderUiMapperImpl implements OrderUiMapper {
 
-  @Autowired
+
   private final FurnitureUiMapper furnitureUiMapper;
+
+  private final FurnitureEntityMapper furnitureEntityMapper;
+  private final FurnitureRepositoryJpa furnitureRepositoryJpa;
 
   @Override
   public OrderResponse toOrderResponse(final Order order) {
@@ -71,4 +79,25 @@ public class OrderUiMapperImpl implements OrderUiMapper {
       .map(this::toOrderDomain)
       .collect(Collectors.toList());
   }
+
+  @Override
+  public Order toOrderDomain(final SaveOrderRequest saveOrderRequest) {
+    final List<FurnitureEntity> furnitureEntityList = new ArrayList<>();
+
+    for (String furnitureArticle : saveOrderRequest.getFurnitureList()) {
+      FurnitureEntity item = furnitureRepositoryJpa.findByArticle(furnitureArticle);
+      furnitureEntityList.add(item);
+    }
+
+    List<Furniture> furnitureList = furnitureEntityMapper
+      .toFurnitureDomainList(furnitureEntityList);
+
+    return Order.of(
+      saveOrderRequest.getNameClient(),
+      saveOrderRequest.getEmailClient(),
+      furnitureList
+    );
+  }
+
+
 }
